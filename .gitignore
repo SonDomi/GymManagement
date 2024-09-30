@@ -63,3 +63,6 @@ _ReSharper/
 
 # Ignore deployment folders
 PublishProfiles/
+
+# Ignore Visual Studio folder
+.vs/
