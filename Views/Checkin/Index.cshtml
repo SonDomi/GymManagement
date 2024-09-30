@@ -1,0 +1,70 @@
+﻿@model GYM_MANAGEMENT.BAL.DTOs.CheckSessionsDto.CheckinDto
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Check-in</h1>
+
+<!-- Display Success or Error message -->
+@if (!string.IsNullOrEmpty(Model.Info))
+{
+    <div class="alert @(Model.IsError ? "alert-danger" : "alert-success")" role="alert">
+        @Model.Info
+    </div>
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Code" class="control-label"></label>
+                <input asp-for="Code" class="form-control" />
+                <span asp-validation-for="Code" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Check-in" class="btn btn-primary"
+                @(string.IsNullOrEmpty(Model.Info) || Model.IsError ? "" : "disabled") />
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Display member information if the check-in was successful -->
+@if (!Model.IsError && !string.IsNullOrEmpty(Model.MemberName))
+{
+    <div class="mt-4">
+        <h3>Member Name: @Model.MemberName</h3>
+        <p>Remaining Sessions: @Model.RemainingSessions</p>
+    </div>
+}
+
+<div>
+    <a asp-action="Index">Back to check-in</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<!-- Optional: Style for the message boxes -->
+<style>
+    .alert-success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+    }
+
+    .alert-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
+</style>

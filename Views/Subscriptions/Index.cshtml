@@ -1,0 +1,77 @@
+﻿@using GYM_MANAGEMENT.BAL.DTOs.SubscriptionsDtos
+@model IEnumerable<GridSubscriptionsDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Subscriptions</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfMonths)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WeekFrequency)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalNumberOfSessions)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfMonths)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WeekFrequency)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalNumberOfSessions)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Time)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDeleted)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

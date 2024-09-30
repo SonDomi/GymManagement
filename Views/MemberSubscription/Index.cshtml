@@ -1,0 +1,91 @@
+﻿@model IEnumerable<GYM_MANAGEMENT.BAL.DTOs.MemberSubscriptionDtos.GridMemberSubscriptionDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Member Subscriptions</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullMemberName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubscriptionCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OriginalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiscountValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaidPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeOfDAY)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RemainingSessions)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullMemberName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubscriptionCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OriginalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiscountValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaidPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeOfDAY)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RemainingSessions)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDeleted)
+            </td>
+                <td>
+                    @if (!item.IsDeleted)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    }
+                </td>
+        </tr>
+}
+    </tbody>
+</table>
